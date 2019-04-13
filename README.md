@@ -1,22 +1,40 @@
 # WEB system
-- [ ] Replace "WEB system" with your system name
+- Phrazer
 
 ## Description
-- [ ] Provide WEB system description in few sentences - its purpose, users, etc.
+- Language learning B2B web application
 
 ## Entity definition
+
+### Phrase
+- ID(number[min 1, max 1 000 000])
+- CreationDate(string[yyyy-mm-ddThh:mm:ss.ffffff])
+- Phrase(string[min-2 max-100 string])
+- Translation(string[min-2 max-100 string])
+    - ModificationDate(string[yyyy-mm-ddThh:mm:ss.ffffff])
+    - Image(url)
+    - Recording(url)
+    - Favorite(boolean)
+
+### Category
+- ID(number[min 1, max 1 000 000])
+- CategoryName[min-2 max-100 string])
+- CreationDate(string[yyyy-mm-ddThh:mm:ss.ffffff])
+    - ModificationDate(string[yyyy-mm-ddThh:mm:ss.ffffff])
+    - Image(url)
+
+ ### Relation
+ - Phrase and Category is n2n
+
+
 - [ ] Define the entity ("object" that will be manipulated) of WEB system
-- [ ] Entity should have a name
 - [ ] Entity should have 3 mandatory attributes:
-    - [ ] ID - depending on specific service this could be a number or string
-    - [ ] Creation date - (if applicable for specific service) ISO 8601 format date string
-    - [ ] Modification date - (if applicable for specific service) ISO 8601 format date string
 - [ ] Entity should have at least 5 custom attributes
-    - [ ] Each attribute should have a type defined: number, string, ISO 8601 date string, boolean, object, array or other
+    Each attribute should have a type defined: number, string, ISO 8601 date string, boolean, object, array or other
     - [ ] Each attribute should have restrictions defined: list of constants, or number range, or string length, or string format, or object schema, or array schema or other. For example, you can use `joi` language to define restrictions: https://github.com/hapijs/joi/blob/v13.1.2/API.md
 
 ## API definition
-- [ ] Define specific service (konkrečios paslaugos) API methods that WEB system is going to use
+- [ ] Define specific service API methods that WEB system is going to use
 - [ ] Optionally define additional API methods that WEB system is going to expose
 - [ ] API should have at least 4 methods
     - [ ] A method to return entity by ID. Should not have request body
@@ -31,6 +49,27 @@
 - [ ] Each method should have URI defined (use {id} as entity ID placeholder)
 - [ ] Should return all 4xx errors in unified format. Define format using `joi` language
 - [ ] Should return all 5xx errors in unified format. Define format using `joi` language
+
+#Phrase API
+
+GET /api/category/:categoryId?size=:size&from=:from
+404 category id not found
+PUT  /api/phrase/:id
+400 err message when validation fails
+POST /phrase
+400 err message when validation fails
+Get /api/phrase/:id
+404 phrase id not found
+DELETE /phrase/id
+404 phrase id not found
+Post /category
+400 err message when validation fails
+
+* 500 in case server error
+
+* for all
+
+
 
 ## UI definition
 - [ ] Define the structure of how visually the WEB system is going to look like
