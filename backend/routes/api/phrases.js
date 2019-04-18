@@ -39,13 +39,14 @@ router.delete('/:id', (req, res) => {
         .catch(err => res.status(404).json({success: false}));;
 });
 
-// @route GET
+// @route GET api/phrases/category/:id
 // @desc Get all by category
 // @access Private
-router.get('/', (req, res) => {
+router.get('/category/:category_id', (req, res) => {
+    var id = req.params.category_id;
     Phrase
-        .find(req.query.category_id)
-        .then(phrases => res.json(phrases))
+        .find({category_id: {$eq: id}})
+        .then(phrase => res.json(phrase))
 });
 
 module.exports = router;
